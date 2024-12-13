@@ -31,7 +31,6 @@ public class studentManag {
             System.out.println("3. Reset Student Data");
             System.out.println("4. Exit");
             System.out.println("Enter your choice: ");
-
             int choice = scanner.nextInt();
 
             switch (choice) {
