@@ -15,13 +15,11 @@ public class studentManag {
             this.lastname = lName;
             this.age = age;
         }
-
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Student[] students = new Student[5];
         int studentCount = 0;
-
         //Student student = new Student(0, "", "", 0);
 
         while(true){
@@ -57,9 +55,9 @@ public class studentManag {
                     int age = scanner.nextInt();
 
                     Student student = new Student(studentid,
-                                                    fistname,
-                                                    lastname,
-                                                    age);
+                            fistname,
+                            lastname,
+                            age);
                     students[studentCount] = student;
                     studentCount++;
                     System.out.println("Student details entered successfully.");
@@ -79,21 +77,23 @@ public class studentManag {
                     }
                     break;
                 case 3:
-                    System.out.println("Enter sudent ID to reset: ");
+                    System.out.println("Enter student id to delete: ");
                     int id = scanner.nextInt();
-                    idFound = false;
+                    boolean found = false;
                     for (int i = 0; i < studentCount; i++) {
                         if (students[i].studentid == id) {
-                        students[i] = null;
-                        studentCount--;
-                        System.out.println("Student data reset successfully.");
-                        idFound = true;
+                            found = true;
+                            for (int j = i; j < studentCount - 1; j++) {
+                                students[j] = students[j + 1];
+                            }
+                            students[studentCount - 1] = null;
+                            studentCount--;
+                            System.out.println("Student deleted successfully.");
+                            break;
                         }
                     }
-                    if (!idFound) {
-                        System.out.println("ID does not exist in the list.");
-                    } else if (studentCount == 0) {
-                        System.out.println("No student data found.");
+                    if (!found) {
+                        System.out.println("Student ID not found.");
                     }
                     break;
                 case 4:
