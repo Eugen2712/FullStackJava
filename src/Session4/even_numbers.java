@@ -11,6 +11,7 @@ public class even_numbers {
         number = scanner.nextInt();
         scanner.close();
         int i = 1;
+
         while (i <= number) {
             if (i % 2 == 0) {
                 System.out.println(i + " ");

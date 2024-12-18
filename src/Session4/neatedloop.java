@@ -8,6 +8,9 @@ public class neatedloop {
         System.out.print("Enter the height of the pyramid: ");
         int height = scanner.nextInt();
         int n = height;
+        scanner.close();
+
+
         for (int i = 1; i <= height; i++) {
             for (int j = height; j > i; j--) {
                 System.out.print(" ");
