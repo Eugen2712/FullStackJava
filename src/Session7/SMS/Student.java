@@ -16,10 +16,9 @@ public class Student {
     }
     public String toString(){
        // return "ID: " + this.studentid + ", First Name: " + this.fistname + ", Last Name: " + this.lastname ;
-        return String.format("ID: %d, First Name: %s, Last Name: %s, Major: %s",
+        return String.format("ID: %d, First Name: %s, Last Name: %s",
                 studentid,
                 fistname,
-                lastname,
-                major);
+                lastname);
     }
 }

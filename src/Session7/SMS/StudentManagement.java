@@ -9,10 +9,9 @@ public class StudentManagement {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Student> students = new ArrayList<Student>();
         int studentCount = 0;
-        //Student student = new Student(0, "", "", 0);
 
         while(true){
-            System.out.println("\n===============================Student ==========================================");
+            System.out.println("\n=============================== Student =========================================");
             System.out.println("1. Enter Student Details");
             System.out.println("2. Display Student Details");
             System.out.println("3. Delete Student Data");
@@ -35,6 +34,7 @@ public class StudentManagement {
 
                     }
                     if (idFound) {
+                        System.out.println("Student with id " + studentid + " already exists");
                         break;
                     }
                     System.out.println("Enter your first name: ");
