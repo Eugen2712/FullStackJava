@@ -1,6 +1,7 @@
 package Session17;
 
 import java.util.EnumSet;
+import java.util.regex.Pattern;
 
 /**
  * Abstract class representing a student.
@@ -67,10 +68,13 @@ public abstract class Student {
     }
 
     public void setEmail(String email) throws IllegalEmailException{
-        if (!email.contains("@")) {
-            throw new IllegalEmailException("Email must contain @.");
+        String emailPattern = "^[\\w.-]+@[\\w.-]+.[A-Za-z]{2,6}$";
+        if (Pattern.matches(emailPattern, email)) {
+            this.email = email;
+        } else {
+            throw new IllegalEmailException("Email is not valid!");
         }
-        this.email = email;
+
     }
 
     /**

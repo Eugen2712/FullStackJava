@@ -70,6 +70,7 @@ public class Utility {
                             .append(gradStudent.getLastName()).append(",")
                             .append(gradStudent.getAge()).append(",")
                             .append(gradStudent.major).append(",")
+                            .append(gradStudent.getEmail()).append(",")
                             .append(gradStudent.getGPA()).append("\n");
                 } else if (student instanceof UndergradStudent) {
                     UndergradStudent undergradStudent = (UndergradStudent) student;
@@ -78,7 +79,8 @@ public class Utility {
                             .append(undergradStudent.getFirstName()).append(",")
                             .append(undergradStudent.getLastName()).append(",")
                             .append(undergradStudent.getAge()).append(",")
-                            .append(undergradStudent.major).append("\n");
+                            .append(undergradStudent.major).append("\n")
+                            .append(undergradStudent.getEmail()).append("\n");
                 }
                 writer.write(studentData.toString());
             }
