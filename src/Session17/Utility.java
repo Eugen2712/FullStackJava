@@ -24,6 +24,10 @@ public class Utility {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] data = line.split(",");
+                    if (data.length < 7) {
+                        System.out.println("Skipping invalid line: " + line);
+                        continue;
+                    }
                     String type = data[0];
                     int id = Integer.parseInt(data[1]);
                     String firstName = data[2];
@@ -33,7 +37,7 @@ public class Utility {
                     String email = data[6];
                     if ("GraduateStudent".equals(type)) {
                         GraduateStudent gradStudent = new GraduateStudent(id, firstName, lastName, age, major, email);
-                        gradStudent.setGPA(Double.parseDouble(data[6]));
+                        gradStudent.setGPA(Double.parseDouble(data[7]));
                         students.add(gradStudent);
                     } else if ("UndergradStudent".equals(type)) {
                         UndergradStudent undergradStudent = new UndergradStudent(id, firstName, lastName, age, major, email);
@@ -79,7 +83,7 @@ public class Utility {
                             .append(undergradStudent.getFirstName()).append(",")
                             .append(undergradStudent.getLastName()).append(",")
                             .append(undergradStudent.getAge()).append(",")
-                            .append(undergradStudent.major).append("\n")
+                            .append(undergradStudent.major).append(",")
                             .append(undergradStudent.getEmail()).append("\n");
                 }
                 writer.write(studentData.toString());

@@ -33,18 +33,19 @@ public class MenuDrivenSMS {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
+            MenuOperation operation = null;
             switch (choice) {
                 case 1:
-                    addStudent(scanner);
+                    operation = new AddStudentOperation();
                     break;
                 case 2:
-                    viewStudents(scanner);
+                    operation = new ViewStudentsOperation();
                     break;
                 case 3:
-                    editStudent(scanner);
+                    operation = new EditStudentOperation();
                     break;
                 case 4:
-                    deleteStudent(scanner);
+                    operation = new DeleteStudentOperation();
                     break;
                 case 0:
                     System.out.println("Exiting...");
@@ -53,229 +54,10 @@ public class MenuDrivenSMS {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        }
-    }
 
-    /**
-     * Adds a new student to the system.
-     *
-     * @param scanner the scanner to read user input
-     */
-    private static void addStudent(Scanner scanner) {
-
-
-        System.out.print("Enter student type (1 for Undergraduate, 2 for Graduate): ");
-        int type = scanner.nextInt();
-        scanner.nextLine();
-
-        Student student = null;
-        if (type == 1) {
-            student = new UndergradStudent("", "", 0, Major.ART, "");
-        } else if (type == 2) {
-            student = new GraduateStudent("", "", 0, Major.ART, "");
-        } else {
-            System.out.println("Invalid student type.");
-            return;
-        }
-
-        System.out.print("Enter first name: ");
-        String firstName = scanner.nextLine();
-        try {
-            student.setFirstName(firstName);
-        } catch (IllegalArgumentException e){
-            System.out.println("Invalid age: " + e.getMessage());
-            return;
-        }
-
-        System.out.print("Enter last name: ");
-        String lastName = scanner.nextLine();
-        try {
-            student.setLastName(lastName);
-        } catch (IllegalArgumentException e){
-            System.out.println("Invalid age: " + e.getMessage());
-            return;
-        }
-
-        System.out.print("Enter major (ART, ECONOMICS, MATH): ");
-        String majorStr = scanner.nextLine();
-
-        try {
-            Major major = Major.valueOf(majorStr.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid Major: " + e.getMessage());
-            return;
-        }
-
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        try {
-            student.setAge(age);
-        } catch (IllegalArgumentException e){
-            System.out.println("Invalid age: " + e.getMessage());
-            return;
-        }
-        scanner.nextLine();
-
-        System.out.print("Enter your email: ");
-        String email = scanner.nextLine();
-        try {
-            student.setEmail(email);
-        } catch (IllegalEmailException e) {
-            System.out.println("Invalid email: " + e.getMessage());
-            return;
-        }
-        if (student instanceof GraduateStudent) {
-            System.out.print("Enter GPA: ");
-            double gpa = scanner.nextDouble();
-            scanner.nextLine();
-            try {
-                ((GraduateStudent) student).setGPA(gpa);
-            } catch (IllegalGpaException e) {
-                System.out.println("Invalid GPA: " + e.getMessage());
-                return;
+            if (operation != null) {
+                operation.execute(scanner, students);
             }
         }
-        students.add(student);
-        System.out.println("Student added successfully.");
-    }
-
-    /**
-     * Displays the list of students.
-     */
-    private static void viewStudents(Scanner scanner) {
-        if (students.isEmpty()) {
-            System.out.println("No students available.");
-            return;
-        }
-
-        System.out.println("View students by:");
-        System.out.println("1. Name");
-        System.out.println("2. Major");
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        switch (choice) {
-            case 1:
-                students.sort(new StudentNameComparator());
-                break;
-            case 2:
-                students.sort(new StudentMajorComparator());
-                break;
-            default:
-                System.out.println("Invalid choice. Displaying unsorted list.");
-        }
-
-        // Print table header
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------+%n");
-        System.out.format("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |%n", "Type", "ID", "First Name", "Last Name", "Age", "Major", "Email", "GPA");
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-------------------------+%n");
-
-        // Print each student
-        for (Student student : students) {
-            student.print();
-        }
-    }
-
-    /**
-     * Deletes a student from the system.
-     *
-     * @param scanner the scanner to read user input
-     */
-    private static void deleteStudent(Scanner scanner) {
-        System.out.print("Enter student ID to delete: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
-        Student studentToRemove = null;
-        for (Student student : students) {
-            if (student.getId() == id) {
-                studentToRemove = student;
-                break;
-            }
-        }
-
-        if (studentToRemove != null) {
-            students.remove(studentToRemove);
-            System.out.println("Student removed successfully.");
-        } else {
-            System.out.println("Student with ID " + id + " not found.");
-        }
-    }
-
-    /**
-     * Edits the details of an existing student.
-     *
-     * @param scanner the scanner to read user input
-     */
-    private static void editStudent(Scanner scanner) {
-        System.out.print("Enter student ID to edit: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
-        Student studentToEdit = null;
-        for (Student student : students) {
-            if (student.getId() == id) {
-                studentToEdit = student;
-                break;
-            }
-        }
-
-        if (studentToEdit == null) {
-            System.out.println("Student with ID " + id + " not found.");
-            return;
-        }
-
-        System.out.print("Enter new first name (leave blank to keep current): ");
-        String firstName = scanner.nextLine();
-        if (!firstName.isEmpty()) {
-            studentToEdit.setFirstName(firstName);
-        }
-
-        System.out.print("Enter new last name (leave blank to keep current): ");
-        String lastName = scanner.nextLine();
-        if (!lastName.isEmpty()) {
-            studentToEdit.setLastName(lastName);
-        }
-
-        System.out.print("Enter new age (leave blank to keep current): ");
-        String ageStr = scanner.nextLine();
-        if (!ageStr.isEmpty()) {
-            int age = Integer.parseInt(ageStr);
-            studentToEdit.setAge(age);
-        }
-
-        System.out.print("Enter new major (leave blank to keep current): ");
-        String majorStr = scanner.nextLine();
-        if (!majorStr.isEmpty()) {
-            Major major = Major.valueOf(majorStr.toUpperCase());
-            studentToEdit.major = major;
-        }
-
-        System.out.print("Enter new email (leave blank to keep current): ");
-        String email = scanner.nextLine();
-        if (!lastName.isEmpty()) {
-            try {
-                studentToEdit.setEmail(email);
-            } catch (IllegalEmailException e) {
-                System.out.println("Invalid email: " + e.getMessage());
-                return;
-            }
-        }
-
-        if (studentToEdit instanceof GraduateStudent) {
-            System.out.print("Enter new GPA (leave blank to keep current): ");
-            String gpaStr = scanner.nextLine();
-            if (!gpaStr.isEmpty()) {
-                double gpa = Double.parseDouble(gpaStr);
-                try {
-                    ((GraduateStudent) studentToEdit).setGPA(gpa);
-                } catch (IllegalGpaException e) {
-                    System.out.println("Invalid GPA: " + e.getMessage());
-                }
-            }
-        }
-
-        System.out.println("Student details updated successfully.");
     }
 }
