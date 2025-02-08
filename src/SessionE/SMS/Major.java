@@ -1,4 +1,4 @@
-package Session.SMS;
+package SessionE.SMS;
 
 /**
  * Enum representing the different majors a student can have.

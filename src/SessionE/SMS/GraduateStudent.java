@@ -1,4 +1,4 @@
-package Session.SMS;
+package SessionE.SMS;
 
 /**
  * The GraduateStudent class represents a graduate student and extends the Student class.

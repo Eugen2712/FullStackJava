@@ -1,4 +1,4 @@
-package Session.SMS;
+package SessionE.SMS;
 
 /**
  * Exception thrown when an illegal GPA value is encountered.

@@ -1,8 +1,8 @@
-package Session.SMS.Menu;
+package SessionE.SMS.Menu;
 
-import Session.SMS.GraduateStudent;
-import Session.SMS.GraduateStudentProcessor;
-import Session.SMS.StudentService;
+import SessionE.SMS.GraduateStudent;
+import SessionE.SMS.GraduateStudentProcessor;
+import SessionE.SMS.StudentService;
 
 import java.util.Scanner;
 public class GraduateStudentMenu {

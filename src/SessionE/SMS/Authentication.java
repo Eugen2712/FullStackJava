@@ -1,4 +1,4 @@
-package Session.SMS;
+package SessionE.SMS;
 
 import com.sun.net.httpserver.HttpExchange;
 

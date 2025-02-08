@@ -1,4 +1,4 @@
-package Session.SMS;
+package SessionE.SMS;
 
 /**
  * An interface representing a printable entity.
