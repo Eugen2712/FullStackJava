@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 import java.util.List;
 
 public class StudentHttpServer {
-    private static final int PORT = 8080;
+    private static final int PORT = 8083;
     private StudentService studentService;
     private ObjectMapper objectMapper = new ObjectMapper();
 
