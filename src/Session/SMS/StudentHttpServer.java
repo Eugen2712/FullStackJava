@@ -1,4 +1,4 @@
-package SessionSMS.SMS;
+package Session.SMS;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

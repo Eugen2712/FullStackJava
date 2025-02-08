@@ -1,8 +1,8 @@
-package SessionSMS.SMS.Menu;
-import SessionSMS.SMS.Student;
-import SessionSMS.SMS.StudentMajorComparator;
-import SessionSMS.SMS.StudentNameComparator;
-import SessionSMS.SMS.StudentService;
+package Session.SMS.Menu;
+import Session.SMS.Student;
+import Session.SMS.StudentMajorComparator;
+import Session.SMS.StudentNameComparator;
+import Session.SMS.StudentService;
 
 import java.util.Scanner;
 

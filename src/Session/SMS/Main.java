@@ -1,6 +1,6 @@
-package SessionSMS.SMS;
+package Session.SMS;
 
-import SessionSMS.SMS.Menu.MainMenu;
+import Session.SMS.Menu.MainMenu;
 
 import java.util.Scanner;
 

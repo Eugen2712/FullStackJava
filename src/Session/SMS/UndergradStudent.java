@@ -1,4 +1,4 @@
-package SessionSMS.SMS;
+package Session.SMS;
 
 /**
  * The UndergradStudent class represents an undergraduate student and extends the Student class.

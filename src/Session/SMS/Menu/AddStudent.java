@@ -1,5 +1,6 @@
-package SessionSMS.SMS.Menu;
+package Session.SMS.Menu;
 
+import Session.SMS.*;
 import SessionSMS.SMS.*;
 
 import java.util.InputMismatchException;

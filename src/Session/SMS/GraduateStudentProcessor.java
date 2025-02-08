@@ -1,4 +1,4 @@
-package SessionSMS.SMS;
+package Session.SMS;
 
 public class GraduateStudentProcessor {
     private StudentService studentService;

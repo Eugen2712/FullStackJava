@@ -1,7 +1,7 @@
-package SessionSMS.SMS.Menu;
+package Session.SMS.Menu;
 
-import SessionSMS.SMS.Student;
-import SessionSMS.SMS.StudentService;
+import Session.SMS.Student;
+import Session.SMS.StudentService;
 
 import java.util.Scanner;
 

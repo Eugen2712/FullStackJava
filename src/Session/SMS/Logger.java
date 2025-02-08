@@ -1,4 +1,4 @@
-package SessionSMS.SMS;
+package Session.SMS;
 
 import java.io.FileWriter;
 import java.io.IOException;
